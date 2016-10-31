@@ -9,6 +9,7 @@ typedef struct st_pilha
 } pilha;
 
 void push(pilha **cabeca, float c); /* inseri o elemento no comeco da lista */
+void show(pilha *cabeca); /* exibe os elementos da lista */
 float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
 
 int main(void)
@@ -34,6 +35,20 @@ void push(pilha **cabeca, float c)
         pp->prox=*cabeca;
         *cabeca=pp;
     }
+    return;
+}
+
+void show(pilha *cabeca)
+{
+    pilha *ms=cabeca;
+
+    printf("\nResultado da operacao: ");
+    while(ms!=NULL)
+    {
+        printf("%.2f\n", ms->car);
+        ms=ms->prox;
+    }
+
     return;
 }
 
