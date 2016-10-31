@@ -11,6 +11,7 @@ typedef struct st_pilha
 void push(pilha **cabeca, float c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
 float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
+int size(pilha *cabeca); /* retorna quantidade de elementos na pilha */
 
 int main(void)
 {
@@ -62,4 +63,16 @@ float pop(pilha **cabeca)
     free(primeiro);
     return valor;
 } 
+
+int size(pilha *cabeca)
+{
+    pilha *pp=cabeca;
+    int count=0;
+    while(pp!=NULL)
+    {
+        count++;
+        pp=pp->prox;
+    }
+    return count;
+}
 
