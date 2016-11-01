@@ -1,26 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX 256
+#define debug 1
 
 typedef struct st_pilha
 {
-    float car;
+    char car;
     struct st_pilha *prox;
 } pilha;
 
-void push(pilha **cabeca, float c); /* inseri o elemento no comeco da lista */
+void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
-float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
+char pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
 int size(pilha *cabeca); /* retorna quantidade de elementos na pilha */
+void inverstr(char *str); /* inverte uma string dada */
 
 int main(void)
 {
     /* algoritmo de repeticao do programa */
 
+    char vet[MAX];
+
+    fgets(vet, MAX, stdin);
+    inverstr(vet);
+
+    if(debug)
+    {
+    putchar('\n');
+    printf("%s", vet);
+    putchar('\n');
+    }
+    
     return EXIT_SUCCESS;
 }
 
-void push(pilha **cabeca, float c)
+void inverstr(char *str)
+{
+    int i;
+    pilha *cabeca=NULL;
+    for(i=0; i < strlen(str)-1;i++)
+        push(&cabeca, str[i]);
+    for(i=0; i < strlen(str)-1;i++)
+        str[i]=pop(&cabeca);
+    return;
+}
+
+void push(pilha **cabeca, char c)
 {
     pilha *pp=*cabeca;
     pp=malloc(sizeof(pilha));
@@ -46,16 +72,16 @@ void show(pilha *cabeca)
     printf("\nResultado da operacao: ");
     while(ms!=NULL)
     {
-        printf("%.2f\n", ms->car);
+        printf("%c\n", ms->car);
         ms=ms->prox;
     }
 
     return;
 }
 
-float pop(pilha **cabeca)
+char pop(pilha **cabeca)
 { 
-    float valor=0;
+    char valor='0';
     pilha *primeiro=*cabeca;
 
     *cabeca=primeiro->prox;
