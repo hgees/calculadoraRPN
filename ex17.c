@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX 100
+
 typedef struct st_pilha
 {
     float car;
@@ -20,11 +22,15 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
-void entrada(void)
+void calculadora(void)
 {
-    printf("\nCalculadora em notacao polonesa inversa\nOperacoes disponiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
+    char entrada[MAX];
+
+    printf("\nCalculadora em notacao polonesa inversa(RPN)\nOperacoes possiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
     
-    printf("\nEscreva o elemento da operacao e pressione <enter>:\n");
+    printf("\nEscreva o elemento da operacao e pressione <ENTER>:\n");
+
+    fgets(entrada, MAX, stdin);
 
     return;
 }
