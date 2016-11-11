@@ -20,6 +20,14 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
+void entrada(void)
+{
+    printf("\nCalculadora em notacao polonesa inversa\nOperacoes disponiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
+    
+    printf("\nEscreva o elemento da operacao e pressione <enter>:\n");
+
+    return;
+}
 void push(pilha **cabeca, float c)
 {
     pilha *pp=*cabeca;
