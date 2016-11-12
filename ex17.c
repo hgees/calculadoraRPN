@@ -10,6 +10,7 @@ typedef struct st_pilha
     struct st_pilha *prox;
 } pilha;
 
+void calcular(char vet[]);
 void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
 char pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
@@ -34,6 +35,16 @@ int main(void)
     
     return EXIT_SUCCESS;
 }
+
+void calcular(char vet[])
+{
+    char *p;
+
+    if((p=strchr(caracteres, '\n'))) *p='\0';
+
+    return;
+}
+
 
 void inverstr(char *str)
 {
