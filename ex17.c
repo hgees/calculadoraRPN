@@ -39,8 +39,24 @@ int main(void)
 void calcular(char vet[])
 {
     char *p;
+    float x, y, result;
 
     if((p=strchr(caracteres, '\n'))) *p='\0';
+
+    if((!strcmp(caracteres, "+")))
+    {
+        x=retira(&cabeca);
+        y=retira(&cabeca);
+        result=x+y;
+        inserir(&cabeca, result);
+    }
+    else if((!strcmp(caracteres, "+")))
+    {
+        x=retira(&cabeca);
+        y=retira(&cabeca);
+        result=x-y;
+        inserir(&cabeca, result);
+    }
 
     return;
 }
