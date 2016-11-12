@@ -72,6 +72,11 @@ void calcular(char vet[])
         result=y/x;
         inserir(&cabeca, result);
     }
+    else if((!strcmp(caracteres, "=")))
+    {
+        if(cabeca!=NULL)
+            mostrar(cabeca); /* mostra os elementos da lista */
+    }
 
     return;
 }
