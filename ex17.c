@@ -23,6 +23,8 @@ int main(void)
     char vet[MAX];
     pilha *cabeca=NULL;
 
+    printf("\nCalculadora em notacao polonesa inversa\nOperacoes disponiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
+    
     do
     {
         fgets(vet, MAX, stdin);
@@ -79,7 +81,7 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     else if((!strcmp(vet, "=")))
     {
         if(cabeca!=NULL)
-            size(cabeca); /* mostra os elementos da lista */
+            show(cabeca); /* mostra os elementos da lista */
     }
     else
         push(&cabeca, atof(vet));
