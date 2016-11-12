@@ -23,8 +23,12 @@ int main(void)
     char vet[MAX];
     pilha *cabeca=NULL;
 
-    fgets(vet, MAX, stdin);
-    calcular(vet[], &cabeca);
+    do
+    {
+        fgets(vet, MAX, stdin);
+        calcular(vet, &cabeca);
+    }while((strcmp(vet, "=")));
+    /*
     inverstr(vet);
 
     if(debug)
@@ -33,7 +37,7 @@ int main(void)
     printf("%s", vet);
     putchar('\n');
     }
-    
+    */
     return EXIT_SUCCESS;
 }
 
@@ -42,43 +46,43 @@ void calcular(char vet[], pilha *cabeca)
     char *p;
     float x, y, result;
 
-    if((p=strchr(caracteres, '\n'))) *p='\0';
+    if((p=strchr(vet, '\n'))) *p='\0';
 
-    if((!strcmp(caracteres, "+")))
+    if((!strcmp(vet, "+")))
     {
-        x=retira(&cabeca);
-        y=retira(&cabeca);
+        x=pop(&cabeca);
+        y=pop(&cabeca);
         result=x+y;
-        inserir(&cabeca, result);
+        push(&cabeca, result);
     }
-    else if((!strcmp(caracteres, "-")))
+    else if((!strcmp(vet, "-")))
     {
-        x=retira(&cabeca);
-        y=retira(&cabeca);
+        x=pop(&cabeca);
+        y=pop(&cabeca);
         result=y-x;
-        inserir(&cabeca, result);
+        push(&cabeca, result);
     }
-    else if((!strcmp(caracteres, "*")))
+    else if((!strcmp(vet, "*")))
     {
-        x=retira(&cabeca);
-        y=retira(&cabeca);
+        x=pop(&cabeca);
+        y=pop(&cabeca);
         result=x*y;
-        inserir(&cabeca, result);
+        push(&cabeca, result);
     }
-    else if((!strcmp(caracteres, "/")))
+    else if((!strcmp(vet, "/")))
     {
-        x=retira(&cabeca);
-        y=retira(&cabeca);
+        x=pop(&cabeca);
+        y=pop(&cabeca);
         result=y/x;
-        inserir(&cabeca, result);
+        push(&cabeca, result);
     }
-    else if((!strcmp(caracteres, "=")))
+    else if((!strcmp(vet, "=")))
     {
         if(cabeca!=NULL)
-            mostrar(cabeca); /* mostra os elementos da lista */
+            size(cabeca); /* mostra os elementos da lista */
     }
     else
-        inserir(&cabeca, atof(caracteres));
+        push(&cabeca, atof(vet);
 
     return;
 }
