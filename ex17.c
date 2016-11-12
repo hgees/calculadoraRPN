@@ -10,7 +10,7 @@ typedef struct st_pilha
     struct st_pilha *prox;
 } pilha;
 
-void calcular(char vet[], pilha *cabeca);
+void calcular(char vet[], pilha *cabeca, pilha **cabec);
 void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
 float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
@@ -26,7 +26,7 @@ int main(void)
     do
     {
         fgets(vet, MAX, stdin);
-        calcular(vet, cabeca);
+        calcular(vet, cabeca, &cabeca);
     }while((strcmp(vet, "=")));
     /*
     inverstr(vet);
@@ -41,7 +41,7 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
-void calcular(char vet[], pilha *cabeca)
+void calcular(char vet[], pilha *cabeca, pilha **cabec)
 {
     char *p;
     float x, y, result;
@@ -83,6 +83,8 @@ void calcular(char vet[], pilha *cabeca)
     }
     else
         push(&cabeca, atof(vet));
+
+    *cabec = cabeca;
 
     return;
 }
