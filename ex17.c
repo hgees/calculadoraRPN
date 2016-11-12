@@ -6,14 +6,14 @@
 
 typedef struct st_pilha
 {
-    char car;
+    float car;
     struct st_pilha *prox;
 } pilha;
 
 void calcular(char vet[], pilha *cabeca);
 void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
-char pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
+float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
 int size(pilha *cabeca); /* retorna quantidade de elementos na pilha */
 void inverstr(char *str); /* inverte uma string dada */
 
@@ -125,16 +125,16 @@ void show(pilha *cabeca)
     printf("\nResultado da operacao: ");
     while(ms!=NULL)
     {
-        printf("%c\n", ms->car);
+        printf("%.2f\n", ms->car);
         ms=ms->prox;
     }
 
     return;
 }
 
-char pop(pilha **cabeca)
+float pop(pilha **cabeca)
 { 
-    char valor='0';
+    float valor=0;
     pilha *primeiro=*cabeca;
 
     *cabeca=primeiro->prox;
