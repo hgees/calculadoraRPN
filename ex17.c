@@ -10,7 +10,7 @@ typedef struct st_pilha
     struct st_pilha *prox;
 } pilha;
 
-void calcular(char vet[]);
+void calcular(char vet[], pilha *cabeca);
 void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
 char pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
@@ -20,10 +20,11 @@ void inverstr(char *str); /* inverte uma string dada */
 int main(void)
 {
     /* algoritmo de repeticao do programa */
-
     char vet[MAX];
+    pilha *cabeca=NULL;
 
     fgets(vet, MAX, stdin);
+    calcular(vet[], &cabeca);
     inverstr(vet);
 
     if(debug)
@@ -36,11 +37,10 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
-void calcular(char vet[])
+void calcular(char vet[], pilha *cabeca)
 {
     char *p;
     float x, y, result;
-    pilha *cabeca=NULL;
 
     if((p=strchr(caracteres, '\n'))) *p='\0';
 
@@ -77,6 +77,8 @@ void calcular(char vet[])
         if(cabeca!=NULL)
             mostrar(cabeca); /* mostra os elementos da lista */
     }
+    else
+        inserir(&cabeca, atof(caracteres));
 
     return;
 }
