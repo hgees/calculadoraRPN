@@ -26,7 +26,7 @@ int main(void)
     do
     {
         fgets(vet, MAX, stdin);
-        calcular(vet, &cabeca);
+        calcular(vet, cabeca);
     }while((strcmp(vet, "=")));
     /*
     inverstr(vet);
@@ -82,7 +82,7 @@ void calcular(char vet[], pilha *cabeca)
             size(cabeca); /* mostra os elementos da lista */
     }
     else
-        push(&cabeca, atof(vet);
+        push(&cabeca, atof(vet));
 
     return;
 }
