@@ -40,6 +40,7 @@ void calcular(char vet[])
 {
     char *p;
     float x, y, result;
+    pilha *cabeca=NULL;
 
     if((p=strchr(caracteres, '\n'))) *p='\0';
 
@@ -50,11 +51,18 @@ void calcular(char vet[])
         result=x+y;
         inserir(&cabeca, result);
     }
-    else if((!strcmp(caracteres, "+")))
+    else if((!strcmp(caracteres, "-")))
     {
         x=retira(&cabeca);
         y=retira(&cabeca);
         result=x-y;
+        inserir(&cabeca, result);
+    }
+    else if((!strcmp(caracteres, "*")))
+    {
+        x=retira(&cabeca);
+        y=retira(&cabeca);
+        result=x*y;
         inserir(&cabeca, result);
     }
 
