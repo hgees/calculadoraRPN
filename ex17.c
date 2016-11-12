@@ -55,7 +55,7 @@ void calcular(char vet[])
     {
         x=retira(&cabeca);
         y=retira(&cabeca);
-        result=x-y;
+        result=y-x;
         inserir(&cabeca, result);
     }
     else if((!strcmp(caracteres, "*")))
@@ -63,6 +63,13 @@ void calcular(char vet[])
         x=retira(&cabeca);
         y=retira(&cabeca);
         result=x*y;
+        inserir(&cabeca, result);
+    }
+    else if((!strcmp(caracteres, "/")))
+    {
+        x=retira(&cabeca);
+        y=retira(&cabeca);
+        result=y/x;
         inserir(&cabeca, result);
     }
 
