@@ -76,10 +76,19 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     }
     else if((!strcmp(vet, "*")))
     {
-        x=pop(&cabeca);
-        y=pop(&cabeca);
-        result=x*y;
-        push(&cabeca, result);
+        qtd = size(cabeca);
+        if(qtd==1)
+        {
+            printf("Nao e' possivel realizar essa multiplicacao\n");
+            return;
+        }
+        else
+        {   
+            x=pop(&cabeca);
+            y=pop(&cabeca);
+            result=x*y;
+            push(&cabeca, result);
+        }
     }
     else if((!strcmp(vet, "/")))
     {
