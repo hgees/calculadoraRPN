@@ -10,7 +10,7 @@ typedef struct st_pilha
     struct st_pilha *prox;
 } pilha;
 
-void calcular(char vet[], pilha *cabeca, pilha **cabec);
+int calcular(char vet[], pilha *cabeca, pilha **cabec);
 void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
 float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
@@ -21,6 +21,7 @@ int main(void)
 {
     /* algoritmo de repeticao do programa */
     char vet[MAX];
+    int success;
     pilha *cabeca=NULL;
 
     printf("\nCalculadora em notacao polonesa inversa\nOperacoes disponiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
@@ -28,7 +29,9 @@ int main(void)
     do
     {
         fgets(vet, MAX, stdin);
-        calcular(vet, cabeca, &cabeca);
+        success = calcular(vet, cabeca, &cabeca);
+        if(success == -1)
+            break;
     }while((strcmp(vet, "=")));
     /*
        inverstr(vet);
@@ -43,9 +46,9 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
-void calcular(char vet[], pilha *cabeca, pilha **cabec)
+int calcular(char vet[], pilha *cabeca, pilha **cabec)
 {
-    int qtd;
+    int qtd = 0;
     char *p;
     float x, y, result;
 
@@ -55,7 +58,10 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
+        {
             printf("Nao e' possivel realizar a soma\n");
+            qtd = -1;
+        }
         else
         {   
             x=pop(&cabeca);
@@ -66,13 +72,13 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     }
     else if((!strcmp(vet, "-")))
     {
-        qtd=elementos(cabeca);
+        qtd = size(cabeca);
         /* se qtd de elementos=1, resultado e' o oposto */
         if(qtd==1)
         {
-            x=retira(&cabeca);
+            x=pop(&cabeca);
             x*=-1;
-            inserir(&cabeca, x);
+            push(&cabeca, x);
         }
         else
         {
@@ -86,7 +92,10 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
+        {
             printf("Nao e' possivel realizar essa multiplicacao\n");
+            qtd = -1;
+        }
         else
         {   
             x=pop(&cabeca);
@@ -99,7 +108,10 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
+        {
             printf("Nao e' possivel realizar a divisao\n");
+            qtd = -1;
+        }
         else
         {   
             x=pop(&cabeca);
@@ -116,9 +128,10 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     else
         push(&cabeca, atof(vet));
 
+
     *cabec = cabeca;
 
-    return;
+    return qtd;
 }
 
 
