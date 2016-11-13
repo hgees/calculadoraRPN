@@ -55,10 +55,7 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
-        {
             printf("Nao e' possivel realizar a soma\n");
-            return;
-        }
         else
         {   
             x=pop(&cabeca);
@@ -78,10 +75,7 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
-        {
             printf("Nao e' possivel realizar essa multiplicacao\n");
-            return;
-        }
         else
         {   
             x=pop(&cabeca);
@@ -94,10 +88,7 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         qtd = size(cabeca);
         if(qtd==1)
-        {
             printf("Nao e' possivel realizar a divisao\n");
-            return;
-        }
         else
         {   
             x=pop(&cabeca);
