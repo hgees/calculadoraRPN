@@ -24,27 +24,28 @@ int main(void)
     pilha *cabeca=NULL;
 
     printf("\nCalculadora em notacao polonesa inversa\nOperacoes disponiveis:\n+ - soma\n- - subtracacao\n* - multiplicacao\n/ - divisao\n= - resultado da operacao\n");
-    
+
     do
     {
         fgets(vet, MAX, stdin);
         calcular(vet, cabeca, &cabeca);
     }while((strcmp(vet, "=")));
     /*
-    inverstr(vet);
+       inverstr(vet);
 
-    if(debug)
-    {
-    putchar('\n');
-    printf("%s", vet);
-    putchar('\n');
-    }
-    */
+       if(debug)
+       {
+       putchar('\n');
+       printf("%s", vet);
+       putchar('\n');
+       }
+       */
     return EXIT_SUCCESS;
 }
 
 void calcular(char vet[], pilha *cabeca, pilha **cabec)
 {
+    int qtd;
     char *p;
     float x, y, result;
 
@@ -52,10 +53,19 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
 
     if((!strcmp(vet, "+")))
     {
-        x=pop(&cabeca);
-        y=pop(&cabeca);
-        result=x+y;
-        push(&cabeca, result);
+        qtd = size(cabeca);
+        if(qtd==1)
+        {
+            printf("Nao e' possivel realizar a soma\n");
+            return;
+        }
+        else
+        {   
+            x=pop(&cabeca);
+            y=pop(&cabeca);
+            result=x+y;
+            push(&cabeca, result);
+        }
     }
     else if((!strcmp(vet, "-")))
     {
