@@ -137,11 +137,14 @@ int calcular(char vet[], pilha *cabeca, pilha **cabec)
 
 void inverstr(char *str)
 {
-    int i;
+    int i, tamanho;
     pilha *cabeca=NULL;
-    for(i=0; i < strlen(str)-1;i++)
+
+    tamanho = strlen(str);
+
+    for(i=0; i < tamanho-1; i++)
         push(&cabeca, str[i]);
-    for(i=0; i < strlen(str)-1;i++)
+    for(i=0; i < tamanho-1; i++)
         str[i]=pop(&cabeca);
     return;
 }
