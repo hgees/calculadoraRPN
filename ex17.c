@@ -66,10 +66,21 @@ void calcular(char vet[], pilha *cabeca, pilha **cabec)
     }
     else if((!strcmp(vet, "-")))
     {
-        x=pop(&cabeca);
-        y=pop(&cabeca);
-        result=y-x;
-        push(&cabeca, result);
+        qtd=elementos(cabeca);
+        /* se qtd de elementos=1, resultado e' o oposto */
+        if(qtd==1)
+        {
+            x=retira(&cabeca);
+            x*=-1;
+            inserir(&cabeca, x);
+        }
+        else
+        {
+            x=pop(&cabeca);
+            y=pop(&cabeca);
+            result=y-x;
+            push(&cabeca, result);
+        }
     }
     else if((!strcmp(vet, "*")))
     {
