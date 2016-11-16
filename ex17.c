@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #define MAX 256
 #define debug 1
 
@@ -11,11 +12,10 @@ typedef struct st_pilha
 } pilha;
 
 int calcular(char vet[], pilha *cabeca, pilha **cabec);
-void push(pilha **cabeca, char c); /* inseri o elemento no comeco da lista */
+void push(pilha **cabeca, double c); /* inseri o elemento no comeco da lista */
 void show(pilha *cabeca); /* exibe os elementos da lista */
-float pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
+double pop(pilha **cabeca); /* retira o primeiro elemento da lista retornando o valor que contem */
 int size(pilha *cabeca); /* retorna quantidade de elementos na pilha */
-void inverstr(char *str); /* inverte uma string dada */
 
 int main(void)
 {
@@ -28,21 +28,23 @@ int main(void)
 
     do
     {
+        printf("\nDigite um valor!!\n");
         fgets(vet, MAX, stdin);
-        success = calcular(vet, cabeca, &cabeca);
+        if((!strcmp(vet, "+")) && (!strcmp(vet, "-")) && (!strcmp(vet, "*")) && (!strcmp(vet, "/")) && (!strcmp(vet, "=")))
+        {
+            if(isalpha(vet))
+            {
+                printf("\n\nERROR\n\n");
+                exit(0);
+            }
+            push(&cabeca, strtod(vet,NULL));            
+        }   
+        else
+            success = calcular(vet, cabeca, &cabeca);
         if(success == -1)
             break;
-    }while((strcmp(vet, "=")));
-    /*
-       inverstr(vet);
 
-       if(debug)
-       {
-       putchar('\n');
-       printf("%s", vet);
-       putchar('\n');
-       }
-       */
+    }while((strcmp(vet, "=")));
     return EXIT_SUCCESS;
 }
 
@@ -124,6 +126,7 @@ int calcular(char vet[], pilha *cabeca, pilha **cabec)
     {
         if(cabeca!=NULL)
             show(cabeca); /* mostra os elementos da lista */
+        exit(1);
     }
     else
         push(&cabeca, atof(vet));
@@ -131,25 +134,11 @@ int calcular(char vet[], pilha *cabeca, pilha **cabec)
 
     *cabec = cabeca;
 
+    show(cabeca); /* mostra os elementos da lista */
     return qtd;
 }
 
-
-void inverstr(char *str)
-{
-    int i, tamanho;
-    pilha *cabeca=NULL;
-
-    tamanho = strlen(str);
-
-    for(i=0; i < tamanho-1; i++)
-        push(&cabeca, str[i]);
-    for(i=0; i < tamanho-1; i++)
-        str[i]=pop(&cabeca);
-    return;
-}
-
-void push(pilha **cabeca, char c)
+void push(pilha **cabeca, double c)
 {
     pilha *pp=*cabeca;
     pp=malloc(sizeof(pilha));
@@ -172,7 +161,7 @@ void show(pilha *cabeca)
 {
     pilha *ms=cabeca;
 
-    printf("\nResultado da operacao: ");
+    printf("\nResultado da operacao:\n");
     while(ms!=NULL)
     {
         printf("%.2f\n", ms->car);
@@ -182,9 +171,9 @@ void show(pilha *cabeca)
     return;
 }
 
-float pop(pilha **cabeca)
+double pop(pilha **cabeca)
 { 
-    float valor=0;
+    double valor=0;
     pilha *primeiro=*cabeca;
 
     *cabeca=primeiro->prox;
